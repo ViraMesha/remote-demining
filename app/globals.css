@@ -171,6 +171,7 @@ body {
   background: var(--bg-primary-color);
   color: var(--main-text-color);
   scroll-behavior: smooth;
+  scroll-padding-top: 100px;
 }
 
 body {
