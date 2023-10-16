@@ -170,6 +170,7 @@ body {
   overflow-x: hidden;
   background: var(--bg-primary-color);
   color: var(--main-text-color);
+  scroll-behavior: smooth;
 }
 
 body {
