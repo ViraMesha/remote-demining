@@ -28,12 +28,17 @@ const NavLink: React.FC<NavLinkPropsType> = ({
     isButton && styles.link_btn
   } ${isFullWidth && styles.fullWidth} ${isMoreInfo && styles.moreInfo_btn}`;
 
-  const scrollUpFunc = ():void => {
-    document.body.scrollTo(0, 0)
-  }
+  const scrollUpFunc = (): void => {
+    window.scrollTo(0, 0);
+  };
 
   return (
-    <Link className={styledLink} href={href} {...rest} onClick={scrollUp ? scrollUpFunc : undefined} >
+    <Link
+      className={styledLink}
+      href={href}
+      {...rest}
+      onClick={scrollUp ? scrollUpFunc : undefined}
+    >
       {children}
     </Link>
   );

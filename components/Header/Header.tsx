@@ -1,7 +1,6 @@
 "use client";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
-import { useEffect } from "react";
 import { useToggle } from "usehooks-ts";
 
 import btn_close_burger from "@/public/images/icons/header/btn_close_burger.svg";
@@ -18,10 +17,6 @@ import LanguageMenu from "./LanguageMenu/LanguageMenu";
 import MobileMenu from "./MobileMenu/MobileMenu";
 
 import styles from "./Header.module.css";
-
-function scrollToTop() {
-  window.scrollTo(0, 0);
-}
 
 const Header = () => {
   const [isOpenMenu, toggleMenu] = useToggle(false);
