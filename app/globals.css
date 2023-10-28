@@ -189,8 +189,12 @@ a {
   text-decoration: none;
 }
 
-/* hide the badge of recaptcha */
-
-.grecaptcha-badge {
-  visibility: hidden;
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: black;
+  transition: background-color var(--transition);
+  background-color: var(--input-secondary-bg-color);
 }
