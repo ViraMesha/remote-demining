@@ -6,6 +6,7 @@ import { useMyMedia } from "@/hooks/useMedia";
 import { getNews } from "@/lib/admin/content";
 
 import { AdminNewsValues } from "../AdminNewsPage/AdminNewsPage";
+import Loader from "../Loader/Loader";
 import SectionContainer from "../SectionContainer/SectionContainer";
 import Slider from "../Slider/Slider";
 
@@ -15,10 +16,13 @@ const NewsSection: React.FC = () => {
   const [perPage, setPerPage] = useState<number>(1);
   const { isMobile, isTablet, isDesktop } = useMyMedia();
   const [newsData, setNewsData] = useState<AdminNewsValues[]>();
+  const [isLoading, setIsLoading] = useState(false);
 
   const fetchNewsData = async () => {
     try {
+      setIsLoading(true);
       const data = await getNews();
+      setIsLoading(false);
       const newsData = data?.map((news): AdminNewsValues => {
         return {
           id: news._id,
@@ -32,15 +36,9 @@ const NewsSection: React.FC = () => {
       });
       setNewsData(newsData);
     } catch (e) {
+      setIsLoading(false);
       console.error(e);
-      toast.error("Упс..., щось пішло не так!", {
-        position: "top-right",
-        autoClose: false,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-      });
+      toast.error("Упс..., щось пішло не так!");
     }
   };
 
@@ -53,6 +51,7 @@ const NewsSection: React.FC = () => {
 
   return (
     <>
+      {isLoading && <Loader />}
       {newsData && (
         <SectionContainer
           titleMargin

@@ -19,6 +19,10 @@ import MobileMenu from "./MobileMenu/MobileMenu";
 
 import styles from "./Header.module.css";
 
+function scrollToTop() {
+  window.scrollTo(0, 0);
+}
+
 const Header = () => {
   const [isOpenMenu, toggleMenu] = useToggle(false);
   const [isModalOpen, toggleModal] = useToggle(false);
@@ -27,8 +31,8 @@ const Header = () => {
 
   const contentBox = `${styles.box} ${isOpenMenu ? styles.bottom_border : ""}`;
   const headerStyle = `${styles.header} ${
-    !pathname.includes("admin") ? styles.fixed : ""
-  }`;
+    !pathname.includes("admin") && styles.fixed
+  } ${pathname.includes("admin") && styles.adminHeader}`;
 
   return (
     <header className={headerStyle}>

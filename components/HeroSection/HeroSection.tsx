@@ -8,6 +8,7 @@ import { ProjectsSlidersData } from "@/lib/types/ProjectsSlidersData";
 
 import { AdminSliderData } from "../AdminSlider/AdminSlider";
 import Donate from "../Donate/Donate";
+import Loader from "../Loader/Loader";
 import Modal from "../Modal/Modal";
 import Slider from "../Slider/Slider";
 
@@ -18,6 +19,8 @@ import styles from "./HeroSection.module.css";
 const HeroSection = () => {
   const [isModalOpen, toggleModal] = useToggle(false);
   const [slidesData, setSlidesData] = useState<AdminSliderData[] | undefined>();
+  const [isLoading, setIsLoading] = useState(false);
+
   const slides =
     slidesData &&
     slidesData.map((item) => (
@@ -25,7 +28,9 @@ const HeroSection = () => {
     ));
   const fetchData = async () => {
     try {
+      setIsLoading(true);
       const data = await getSliders();
+      setIsLoading(false);
       const slides = data?.map((slide): AdminSliderData => {
         return {
           id: slide._id,
@@ -37,6 +42,7 @@ const HeroSection = () => {
       setSlidesData(slides);
     } catch (error) {
       console.log(error);
+      setIsLoading(false);
       toast.error("Упс..., щось пішло не так!");
     }
   };
@@ -47,6 +53,7 @@ const HeroSection = () => {
 
   return (
     <>
+      {isLoading && <Loader />}
       {slides && (
         <section id="hero" className={styles.container}>
           <Slider slidesPerPage={1} slides={slides} dots />

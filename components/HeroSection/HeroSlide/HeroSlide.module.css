@@ -2,7 +2,6 @@
   height: var(--hero-height-desktop);
   position: relative;
   background-size: cover !important;
-  background-blend-mode: multiply;
   background-position: left;
 }
 @media (min-width: 320px) {
@@ -24,7 +23,7 @@
     background-position: center !important;
   }
 }
- 
+
 .slide > *:not(.contentImage) {
   justify-self: start;
 }
@@ -38,7 +37,6 @@
 .caption {
   line-height: 150%;
 }
-
 
 .text_container {
   color: var(--slider-dots-primary);
