@@ -7,9 +7,10 @@ import { useWindowSize } from "usehooks-ts";
 import { fetchProjectsCards } from "@/lib/projects/projectsData";
 
 import { AdminCardsData } from "../AdminCards/AdminCards";
-import Loader from "../Loader/Loader";
 import SectionContainer from "../SectionContainer/SectionContainer";
 import Slider from "../Slider/Slider";
+
+import defaultProjectsData from "./projectsData";
 
 import styles from "./Projects.module.css";
 
@@ -17,14 +18,11 @@ const Projects = () => {
   const [projectsData, setProjectsData] = useState<
     AdminCardsData[] | undefined
   >();
-  const [isLoading, setIsLoading] = useState(false);
   const { width } = useWindowSize();
 
   const fetchData = async () => {
     try {
-      setIsLoading(true);
       const data = await fetchProjectsCards();
-      setIsLoading(false);
       const cardData = data?.map((card): AdminCardsData => {
         return {
           id: card._id,
@@ -37,7 +35,6 @@ const Projects = () => {
       setProjectsData(cardData);
     } catch (error) {
       console.log(error);
-      setIsLoading(false);
       toast.error("Упс..., щось пішло не так!");
     }
   };
@@ -48,7 +45,6 @@ const Projects = () => {
 
   return (
     <>
-      {isLoading && <Loader />}
       <SectionContainer
         title="Переваги проєкту "
         description="Територія може бути забруднена мінами, встановленими вручну, або розтяжками з вибуховими предметами. В такому випадку їх виявляють і знешкоджують вручну. Ми пропонуємо метод дистанційного розмінування без участі сапера і для будь-якого виду забруднення."
@@ -95,6 +91,48 @@ const Projects = () => {
                   </div>
                 </li>
               ))}
+          </ul>
+        )}
+        {width >= 1280 && !projectsData ? (
+          <Slider
+            slidesPerPage={3}
+            slides={defaultProjectsData.map(
+              ({ id, img, title, text, img_description }) => (
+                <li key={id} className={styles.card}>
+                  <div className={styles.image}>
+                    <Image src={img} fill alt={img_description} sizes="437px" />
+                  </div>
+                  <div className={styles.body}>
+                    <h3 className={styles.title}>{title}</h3>
+                    <p className={styles.text}>{text}</p>
+                  </div>
+                </li>
+              )
+            )}
+          />
+        ) : (
+          <ul className={styles.list}>
+            {!projectsData &&
+              defaultProjectsData.map(
+                ({ id, img, title, text, img_description }) => (
+                  <li key={id} className={styles.card}>
+                    <div className={styles.image}>
+                      <Image
+                        src={img}
+                        fill
+                        alt={img_description}
+                        sizes="(min-width: 768px) 340px,
+                    100vw"
+                        quality={100}
+                      />
+                    </div>
+                    <div className={styles.body}>
+                      <h3 className={styles.title}>{title}</h3>
+                      <p className={styles.text}>{text}</p>
+                    </div>
+                  </li>
+                )
+              )}
           </ul>
         )}
       </SectionContainer>

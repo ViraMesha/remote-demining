@@ -6,23 +6,20 @@ import { useMyMedia } from "@/hooks/useMedia";
 import { getNews } from "@/lib/admin/content";
 
 import { AdminNewsValues } from "../AdminNewsPage/AdminNewsPage";
-import Loader from "../Loader/Loader";
 import SectionContainer from "../SectionContainer/SectionContainer";
 import Slider from "../Slider/Slider";
 
 import NewsItem from "./NewsItem/NewsItem";
+import defaultNewsData from "./newsData";
 
 const NewsSection: React.FC = () => {
   const [perPage, setPerPage] = useState<number>(1);
   const { isMobile, isTablet, isDesktop } = useMyMedia();
   const [newsData, setNewsData] = useState<AdminNewsValues[]>();
-  const [isLoading, setIsLoading] = useState(false);
 
   const fetchNewsData = async () => {
     try {
-      setIsLoading(true);
       const data = await getNews();
-      setIsLoading(false);
       const newsData = data?.map((news): AdminNewsValues => {
         return {
           id: news._id,
@@ -36,7 +33,6 @@ const NewsSection: React.FC = () => {
       });
       setNewsData(newsData);
     } catch (e) {
-      setIsLoading(false);
       console.error(e);
       toast.error("Упс..., щось пішло не так!");
     }
@@ -51,21 +47,27 @@ const NewsSection: React.FC = () => {
 
   return (
     <>
-      {isLoading && <Loader />}
-      {newsData && (
-        <SectionContainer
-          titleMargin
-          title="Наші новини"
-          description="Науковці НАН України є постійними учасниками конференцій і форумів в сфері високотехнологічних розробок і найсучасніших методів галузі інженерії"
-        >
+      <SectionContainer
+        titleMargin
+        title="Наші новини"
+        description="Науковці НАН України є постійними учасниками конференцій і форумів в сфері високотехнологічних розробок і найсучасніших методів галузі інженерії"
+      >
+        {!newsData ? (
+          <Slider
+            slidesPerPage={perPage}
+            slides={defaultNewsData?.map((elem) => (
+              <NewsItem defaultNewsData key={elem.id} {...elem} />
+            ))}
+          />
+        ) : (
           <Slider
             slidesPerPage={perPage}
             slides={newsData?.map((elem) => (
               <NewsItem key={elem.id} {...elem} />
             ))}
           />
-        </SectionContainer>
-      )}
+        )}
+      </SectionContainer>
     </>
   );
 };

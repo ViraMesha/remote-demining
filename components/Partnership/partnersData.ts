@@ -1,46 +1,58 @@
 import partner from "@/public/images/partnership/img.jpg";
 
 export interface Partner {
-  id: number;
-  img: string;
+  _id: string;
+  images: string;
+  img_description: string;
 }
+
+const img_description = "logo of a partner";
 
 const partnersData: Partner[] = [
   {
-    id: 1,
-    img: partner.src,
+    _id: "1",
+    images: partner.src,
+    img_description,
   },
   {
-    id: 2,
-    img: partner.src,
+    _id: "2",
+    images: partner.src,
+    img_description,
   },
   {
-    id: 3,
-    img: partner.src,
+    _id: "3",
+    images: partner.src,
+    img_description,
   },
   {
-    id: 4,
-    img: partner.src,
+    _id: "4",
+    images: partner.src,
+    img_description,
   },
   {
-    id: 5,
-    img: partner.src,
+    _id: "5",
+    images: partner.src,
+    img_description,
   },
   {
-    id: 6,
-    img: partner.src,
+    _id: "6",
+    images: partner.src,
+    img_description,
   },
   {
-    id: 7,
-    img: partner.src,
+    _id: "7",
+    images: partner.src,
+    img_description,
   },
   {
-    id: 8,
-    img: partner.src,
+    _id: "8",
+    images: partner.src,
+    img_description,
   },
   {
-    id: 9,
-    img: partner.src,
+    _id: "9",
+    images: partner.src,
+    img_description,
   },
 ];
 

@@ -1,5 +1,3 @@
-import { CSSProperties } from "react";
-
 import heroBg1 from "@/public/images/hero/slide_1.png";
 import heroBg2 from "@/public/images/hero/slide_2.jpg";
 import heroBg3 from "@/public/images/hero/slide_3.jpg";

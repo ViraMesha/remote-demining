@@ -55,8 +55,7 @@
 
 @media screen and (max-width: 400px) {
   .card_body {
-    max-width: 223px;
-    min-width: 223px;
+    width: 223px;
   }
   .card_text {
     gap: 32px;

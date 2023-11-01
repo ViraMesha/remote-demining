@@ -1,8 +1,9 @@
-// eslint-disable-next-line simple-import-sort/imports
+import Link from "next/link";
+
 import Card from "@/components/Card/Card";
 import NavLink from "@/components/NavLink/NavLink";
+
 import styles from "./NewsItem.module.css";
-import Link from "next/link";
 
 interface NewsItem {
   id: string;
@@ -12,6 +13,7 @@ interface NewsItem {
   link: string;
   date: string;
   img_description: string;
+  defaultNewsData?: boolean;
 }
 
 const NewsItem: React.FC<NewsItem> = ({
@@ -22,11 +24,16 @@ const NewsItem: React.FC<NewsItem> = ({
   link,
   date,
   img_description,
+  defaultNewsData,
 }) => {
   return (
     <div key={id} className={styles.item}>
       <Card
-        img={`https://remote-demining.onrender.com/images/${image}`}
+        img={
+          defaultNewsData
+            ? image
+            : `https://remote-demining.onrender.com/images/${image}`
+        }
         alt={img_description}
       >
         <div className={styles.content}>

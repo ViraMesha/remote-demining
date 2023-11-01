@@ -23,7 +23,7 @@ const HeroSlide: FC<HeroSlideProps> = ({ item, toggleModal, defaultData }) => {
         className={styles["slide"]}
         style={{
           background: defaultData
-            ? `lightgray url(https://remote-demining.onrender.com/images/${item.img})`
+            ? `lightgray url(${item.img})`
             : `lightgray url(https://remote-demining.onrender.com/images/${item.img})`,
         }}
       >

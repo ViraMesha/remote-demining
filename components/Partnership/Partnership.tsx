@@ -6,25 +6,22 @@ import { toast } from "react-toastify";
 import { useMyMedia } from "@/hooks/useMedia";
 import { getLogos, LogosInDTO } from "@/lib/admin/content";
 
-import Loader from "../Loader/Loader";
 import SectionContainer from "../SectionContainer/SectionContainer";
 import Slider from "../Slider/Slider";
+
+import partnersData from "./partnersData";
 
 import styles from "./Parnership.module.css";
 
 const Partnership = () => {
   const [perPage, setPerPage] = useState<number>(0);
   const [logos, setLogos] = useState<LogosInDTO[]>([]);
-  const [isLoading, setIsLoading] = useState(false);
 
   const getData = async () => {
     try {
-      setIsLoading(true);
       const logos = await getLogos();
-      setIsLoading(false);
       setLogos(logos);
     } catch (error) {
-      setIsLoading(false);
       console.error(error);
       toast.error("Упс..., щось пішло не так!");
     }
@@ -64,9 +61,32 @@ const Partnership = () => {
     isDesktop,
   ]);
 
+  const slides =
+    logos.length === 0
+      ? partnersData.map(({ _id, images, img_description }) => (
+          <div key={_id}>
+            <Image
+              src={images}
+              alt={img_description}
+              width={213}
+              height={140}
+            />
+          </div>
+        ))
+      : logos.map((el) => (
+          <div key={el._id}>
+            <Image
+              src={`https://remote-demining.onrender.com/images/${el.images}`}
+              alt={el.data.img_description}
+              width={213}
+              height={140}
+              className={styles.img}
+            />
+          </div>
+        ));
+
   return (
     <>
-      {isLoading && <Loader />}
       <SectionContainer
         title="Партнерські організації"
         description="Організації, з якими ми постійно співпрацюємо"
@@ -75,20 +95,7 @@ const Partnership = () => {
         titleMargin
         hasNoPaddingTop
       >
-        <Slider
-          slidesPerPage={perPage}
-          slides={logos.map((el) => (
-            <div key={el._id}>
-              <Image
-                src={`https://remote-demining.onrender.com/images/${el.images}`}
-                alt={el.data.img_description}
-                width={213}
-                height={140}
-              />
-            </div>
-          ))}
-          infinite={false}
-        />
+        <Slider slidesPerPage={perPage} slides={slides} infinite={false} />
       </SectionContainer>
     </>
   );

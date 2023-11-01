@@ -18,7 +18,6 @@ import styles from "./HeroSection.module.css";
 const HeroSection = () => {
   const [isModalOpen, toggleModal] = useToggle(false);
   const [slidesData, setSlidesData] = useState<AdminSliderData[] | undefined>();
-  const [isLoading, setIsLoading] = useState(false);
 
   const slides =
     slidesData &&
@@ -37,9 +36,7 @@ const HeroSection = () => {
 
   const fetchData = async () => {
     try {
-      setIsLoading(true);
       const data = await getSliders();
-      setIsLoading(false);
       const slides = data?.map((slide): AdminSliderData => {
         return {
           id: slide._id,
@@ -51,7 +48,6 @@ const HeroSection = () => {
       setSlidesData(slides);
     } catch (error) {
       console.log(error);
-      setIsLoading(false);
       toast.error("Упс..., щось пішло не так!");
     }
   };
@@ -62,8 +58,8 @@ const HeroSection = () => {
 
   return (
     <>
-      {isLoading && (
-        <section id="hero" className={styles.container}>
+      <section id="hero" className={styles.container}>
+        {!slides ? (
           <Slider
             slidesPerPage={1}
             slides={defaultSlides}
@@ -71,31 +67,16 @@ const HeroSection = () => {
             infinite
             autoplay
           />
-          {isModalOpen && (
-            <Modal
-              isBigModal
-              toggleModal={toggleModal}
-              isModalOpen={isModalOpen}
-            >
-              <Donate />
-            </Modal>
-          )}
-        </section>
-      )}
-      {slides && (
-        <section id="hero" className={styles.container}>
+        ) : (
           <Slider slidesPerPage={1} slides={slides} dots infinite autoplay />
-          {isModalOpen && (
-            <Modal
-              isBigModal
-              toggleModal={toggleModal}
-              isModalOpen={isModalOpen}
-            >
-              <Donate />
-            </Modal>
-          )}
-        </section>
-      )}
+        )}
+
+        {isModalOpen && (
+          <Modal isBigModal toggleModal={toggleModal} isModalOpen={isModalOpen}>
+            <Donate />
+          </Modal>
+        )}
+      </section>
     </>
   );
 };
