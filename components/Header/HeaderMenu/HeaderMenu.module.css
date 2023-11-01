@@ -58,3 +58,7 @@
     gap: 32px;
   }
 }
+
+.active {
+  color: var(--link-primary-bg-color);
+}

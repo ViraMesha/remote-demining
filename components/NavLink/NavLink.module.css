@@ -18,7 +18,7 @@
   transition: width 0.3s ease 0s, left 0.3s ease 0s;
   width: 0;
 }
-.link:hover:not(.link_btn):not(.moreInfo_btn):after {
+.link:hover:not(.link_btn):not(.moreInfo_btn):not(.noHover):after {
   width: 100%;
   left: 0;
 }

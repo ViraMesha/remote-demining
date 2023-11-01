@@ -12,6 +12,8 @@ interface NavLinkPropsType {
   target?: string;
   rel?: string;
   scrollUp?: boolean;
+  className?: string;
+  hasNoHover?: boolean;
 }
 
 const NavLink: React.FC<NavLinkPropsType> = ({
@@ -22,11 +24,15 @@ const NavLink: React.FC<NavLinkPropsType> = ({
   isFullWidth,
   isMoreInfo,
   scrollUp,
+  className,
+  hasNoHover = false,
   ...rest
 }: NavLinkPropsType) => {
   const styledLink = `${styles.link} ${isActive && styles.active} ${
     isButton && styles.link_btn
-  } ${isFullWidth && styles.fullWidth} ${isMoreInfo && styles.moreInfo_btn}`;
+  } ${isFullWidth && styles.fullWidth} ${isMoreInfo && styles.moreInfo_btn} ${
+    className || ""
+  } ${hasNoHover && styles.noHover}`;
 
   const scrollUpFunc = (): void => {
     window.scrollTo(0, 0);
