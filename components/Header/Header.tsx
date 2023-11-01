@@ -1,7 +1,8 @@
 "use client";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
-import { useToggle } from "usehooks-ts";
+import { useEffect } from "react";
+import { useToggle, useWindowSize } from "usehooks-ts";
 
 import btn_close_burger from "@/public/images/icons/header/btn_close_burger.svg";
 import burger_menu from "@/public/images/icons/header/burger_menu.svg";
@@ -21,6 +22,7 @@ import styles from "./Header.module.css";
 const Header = () => {
   const [isOpenMenu, toggleMenu] = useToggle(false);
   const [isModalOpen, toggleModal] = useToggle(false);
+  const { width } = useWindowSize();
 
   const pathname = usePathname();
 
@@ -28,6 +30,20 @@ const Header = () => {
   const headerStyle = `${styles.header} ${
     !pathname.includes("admin") && styles.fixed
   } ${pathname.includes("admin") && styles.adminHeader}`;
+
+  useEffect(() => {
+    const body = document.querySelector("body");
+
+    isOpenMenu
+      ? body?.classList.add(styles.overflowHidden)
+      : body?.classList.remove(styles.overflowHidden);
+  }, [isOpenMenu]);
+
+  useEffect(() => {
+    if (width > 768 && isOpenMenu) {
+      toggleMenu();
+    }
+  }, [isOpenMenu, toggleMenu, width]);
 
   return (
     <header className={headerStyle}>
