@@ -68,6 +68,7 @@ const FeedbackForm: FC = () => {
         noValidate
       >
         <Input
+          id="name"
           size="full"
           type="text"
           label="Ім'я*"
@@ -79,6 +80,7 @@ const FeedbackForm: FC = () => {
         {width >= 320 && width < 768 ? (
           <div className={styles.fullInputsWrapper}>
             <Input
+              id="phone"
               size="full"
               type="tel"
               label="Телефон*"
@@ -88,6 +90,7 @@ const FeedbackForm: FC = () => {
               {...register("phone")}
             />
             <Input
+              id="email"
               size="full"
               type="email"
               label="E-mail*"
@@ -102,6 +105,7 @@ const FeedbackForm: FC = () => {
             <Input
               size="small"
               type="tel"
+              id="phone"
               label="Телефон*"
               backgroundCl="secondary"
               error={errors.phone}
@@ -109,6 +113,7 @@ const FeedbackForm: FC = () => {
               {...register("phone")}
             />
             <Input
+              id="email"
               size="small"
               type="email"
               label="E-mail*"
@@ -120,6 +125,7 @@ const FeedbackForm: FC = () => {
           </div>
         )}
         <TextArea
+          id="comment"
           label="Повідомлення*"
           size="full"
           backgroundCl="secondary"

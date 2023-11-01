@@ -74,6 +74,7 @@ const ContactForm: FC = ({}) => {
           size="full"
           type="name"
           label="Ім'я"
+          id="name"
           errorMessage={errors.name?.message}
           error={errors.name}
           {...register("name")}
@@ -82,12 +83,14 @@ const ContactForm: FC = ({}) => {
           size="full"
           type="tel"
           label="Телефон"
+          id="phone"
           errorMessage={errors.phone?.message}
           error={errors.phone}
           {...register("phone")}
         />
         <Input
           {...register("email")}
+          id="email"
           size="full"
           type="email"
           error={errors.email}
@@ -95,6 +98,7 @@ const ContactForm: FC = ({}) => {
           label="E-mail"
         />
         <TextArea
+          id="comment"
           {...register("comment")}
           label="Повідомлення"
           size="full"
