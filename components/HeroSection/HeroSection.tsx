@@ -4,15 +4,14 @@ import { toast } from "react-toastify";
 import { useToggle } from "usehooks-ts";
 
 import { getSliders } from "@/lib/admin/slider";
-import { ProjectsSlidersData } from "@/lib/types/ProjectsSlidersData";
 
 import { AdminSliderData } from "../AdminSlider/AdminSlider";
 import Donate from "../Donate/Donate";
-import Loader from "../Loader/Loader";
 import Modal from "../Modal/Modal";
 import Slider from "../Slider/Slider";
 
 import HeroSlide from "./HeroSlide/HeroSlide";
+import { heroData } from "./heroData";
 
 import styles from "./HeroSection.module.css";
 
@@ -26,6 +25,16 @@ const HeroSection = () => {
     slidesData.map((item) => (
       <HeroSlide item={item} key={item.id} toggleModal={toggleModal} />
     ));
+
+  const defaultSlides = heroData.map((item) => (
+    <HeroSlide
+      item={item}
+      key={item.id}
+      toggleModal={toggleModal}
+      defaultData
+    />
+  ));
+
   const fetchData = async () => {
     try {
       setIsLoading(true);
@@ -53,10 +62,29 @@ const HeroSection = () => {
 
   return (
     <>
-      {isLoading && <Loader />}
+      {isLoading && (
+        <section id="hero" className={styles.container}>
+          <Slider
+            slidesPerPage={1}
+            slides={defaultSlides}
+            dots
+            infinite
+            autoplay
+          />
+          {isModalOpen && (
+            <Modal
+              isBigModal
+              toggleModal={toggleModal}
+              isModalOpen={isModalOpen}
+            >
+              <Donate />
+            </Modal>
+          )}
+        </section>
+      )}
       {slides && (
         <section id="hero" className={styles.container}>
-          <Slider slidesPerPage={1} slides={slides} dots />
+          <Slider slidesPerPage={1} slides={slides} dots infinite autoplay />
           {isModalOpen && (
             <Modal
               isBigModal

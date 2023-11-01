@@ -13,6 +13,7 @@ interface SliderProps {
   dots?: boolean;
   dotsPlacement?: "inner" | "outer";
   responsive?: ResponsiveObject[];
+  autoplay?: boolean;
 }
 
 const Slider: React.FC<SliderProps> = ({
@@ -22,10 +23,11 @@ const Slider: React.FC<SliderProps> = ({
   dots,
   dotsPlacement = "inner",
   responsive,
+  autoplay = false,
 }) => {
   const sliderSettings: Settings = {
     slidesToShow: slidesPerPage < slides.length ? slidesPerPage : slides.length,
-    autoplay: false,
+    autoplay,
     focusOnSelect: false,
     nextArrow: (
       <Arrow

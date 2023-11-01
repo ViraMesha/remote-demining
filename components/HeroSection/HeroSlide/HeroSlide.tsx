@@ -3,24 +3,28 @@
 import { FC } from "react";
 import { useWindowSize } from "usehooks-ts";
 
-import { AdminSliderData } from "@/components/AdminSlider/AdminSlider";
 import Button from "@/components/Button/Button";
+
+import type { HeroData } from "../heroData";
 
 import styles from "./HeroSlide.module.css";
 
 interface HeroSlideProps {
-  item: AdminSliderData;
+  item: HeroData;
   toggleModal: () => void;
+  defaultData?: boolean;
 }
 
-const HeroSlide: FC<HeroSlideProps> = ({ item, toggleModal }) => {
+const HeroSlide: FC<HeroSlideProps> = ({ item, toggleModal, defaultData }) => {
   const { width } = useWindowSize();
   return (
     <div>
       <div
         className={styles["slide"]}
         style={{
-          background: `lightgray url(https://remote-demining.onrender.com/images/${item.img})`,
+          background: defaultData
+            ? `lightgray url(https://remote-demining.onrender.com/images/${item.img})`
+            : `lightgray url(https://remote-demining.onrender.com/images/${item.img})`,
         }}
       >
         <div className={styles.text_container}>
