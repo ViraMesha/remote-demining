@@ -1,34 +1,33 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Remote Demining Awareness Platform
 
-## Getting Started
+## Overview
+This volunteer initiative has developed an interactive platform for Remote Demining awareness, leveraging cutting-edge technologies. The platform features sliders, informational cards, a news section, and incorporates user registration with React Hooks, TypeScript, React Hook Form, and other modern tools. The use of Next.js 13 ensures a seamless and performant web experience, with the project consisting of four responsive pages: Home, Scientific Activity, Remote Demining, and Contact.
 
-First, run the development server:
+## Key Features
+- Interactive Interface: The platform boasts a dynamic and user-friendly interface, powered by Next.js 13, React Hooks, and React Hook Form for a seamless and interactive experience.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-```
+- Information Cards: Users can access valuable information through dedicated info cards, enhanced by React Slick for a visually engaging display.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+- News Section: Stay informed about the latest updates and news related to remote demining activities through the dedicated news section.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- User Registration: The project includes a secure user registration system implemented with React Hooks, TypeScript, and React Hook Form, ensuring a smooth and controlled registration process.
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+- Responsive Design: The use of Next.js App Router and modern CSS ensures that the platform is responsive and provides a consistent experience across various devices.
 
-## Learn More
+## Pages
+- Home: The landing page introduces users to the initiative's purpose and goals, featuring dynamic content powered by Next.js.
 
-To learn more about Next.js, take a look at the following resources:
+- Scientific Activity: Delve into the scientific aspects of remote demining with detailed information presented using React Hooks and TypeScript.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- Remote Demining: Explore the core of the project, understanding methodologies and global impact, with a responsive layout courtesy of Next.js.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+- Contact: Engage with the initiative through the contact page, providing a seamless communication experience.
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+## Technologies Used
+- Next.js 13
+- Next.js App Router
+- React Hooks
+- TypeScript
+- React Hook Form
+- React Slick
+- Yup (for form validation)
