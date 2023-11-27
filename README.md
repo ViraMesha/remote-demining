@@ -1,7 +1,7 @@
 # Remote Demining Awareness Platform
 
 ## Overview
-This volunteer initiative has developed an interactive platform for Remote Demining awareness, leveraging cutting-edge technologies. The platform features sliders, informational cards, a news section, and incorporates user registration with React Hooks, TypeScript, React Hook Form, and other modern tools. The use of Next.js 13 ensures a seamless and performant web experience, with the project consisting of four responsive pages: Home, Scientific Activity, Remote Demining, and Contact.
+This project was collaboratively developed by a team of volunteers, including myself. It was undertaken in partnership with a government organization committed to the cause of Remote Demining. The platform features sliders, informational cards, a news section, and incorporates user registration with React Hooks, TypeScript, React Hook Form, and other modern tools. The use of Next.js 13 ensures a seamless and performant web experience, with the project consisting of four responsive pages: Home, Scientific Activity, Remote Demining, and Contact.
 
 ## Key Features
 - Interactive Interface: The platform boasts a dynamic and user-friendly interface, powered by Next.js 13, React Hooks, and React Hook Form for a seamless and interactive experience.
