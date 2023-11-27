@@ -10,10 +10,12 @@
 .container img {
   object-position: center 25%;
   object-fit: cover;
+  z-index: 0;
 }
 
 .wrapper {
-  position: absolute;
+  position: relative;
+  z-index: 1;
 }
 
 .title {

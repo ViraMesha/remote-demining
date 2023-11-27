@@ -1,9 +1,0 @@
-.section {
-  min-height: 700px;
-}
-
-@media (min-width: 768px) {
-  .section {
-    min-height: 700px;
-  }
-}
